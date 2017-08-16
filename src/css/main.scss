@@ -1,0 +1,410 @@
+@mixin full-span() {
+	width:100%;
+	height:100%;
+}
+
+html, body {
+	margin:0;
+	padding:0;
+	@include full-span();
+	position: relative;
+	overflow:hidden;
+}
+
+$drawerWidth: 50px;
+
+#wrapper1 {
+	@include full-span();
+
+	position:absolute;
+	
+	&>.root {
+		height:100%;
+		width:$drawerWidth;
+		position:absolute;
+		left:0;
+		transition: 0.5s;
+		z-index:2;
+
+		&>.main {
+			display:flex;
+			flex-direction: column;
+			height: 100%;
+			justify-content: center;
+			transition: 0.5s;
+			position: absolute;
+			left:-$drawerWidth;
+		}
+
+		&>.main.visible {
+			left:0;
+		}
+
+		&>.main>.item {
+			padding:3px 16px;
+			margin:0 0 0 -90px;
+			width:120px;
+			height:30px;
+			transition: 0.5s;
+			text-align: right;
+			font-size:1em;
+			color:#78b532;
+			position:relative;
+			overflow: hidden;
+			cursor:pointer;
+
+			& .icon {
+				float:left;
+				width: 30px;
+				height: 30px;
+				margin-left:80px;
+				display: block;
+				line-height:30px;
+				text-align: center;
+				transition: margin 0.5s, line-height 0.5s, font-size 0.5s, transform 0.5s;
+			}
+			& .content {
+				top:15px;
+				right:0px;
+				opacity:0;
+				transition: width 0.5s, height 0.5s, opacity 0.5s ease-out, right 0.5s;
+				position: absolute;
+				text-align: left;
+
+				&>ul {
+					list-style-type: none;
+					padding:0;
+					margin:0 20px 25px 120px;
+				
+					&>li {
+						font-family: arial;
+						font-size:.8em;
+						white-space: nowrap;
+					}
+				}
+
+			}
+			
+			&:first-child {	
+				border-top-right-radius: 6px;
+			}
+			
+			&:last-child {	
+				border-bottom-right-radius: 6px;
+			}
+
+			&.hovered,
+			&.activated {
+				border-radius: 6px;
+				background: #78b532;
+				color:white;
+
+				&.icon {
+					line-height:55px;
+				}
+
+			}
+
+			&.hovered,
+			&.activated {
+				&>.icon {
+					line-height:55px;
+					font-size:2em;
+				}
+			}
+
+			&.hovered {
+				margin:0 0 0 -70px;
+				height:60px;
+			}
+
+			&.activated {
+				&>.icon {
+					transform: scale(1);
+					margin-left:90px;
+				}
+
+				&>.content {
+					top:15px;
+					right:0px;
+					opacity: 1;
+				}
+			}
+
+
+			/*&>* {
+				float:right;
+				display:none;
+			}
+
+		 	&>:first-child {
+				display:inline-block;
+			}
+
+			&.activated>*:first-child {
+				display:none;
+			}
+
+			&.activated>* {
+				font-size:0.5em;
+				display:inline-block;
+			}*/
+		}
+	}
+
+	&>.closer {
+		top:0;
+		height:100%;
+		position:absolute;
+		width:0;
+		left:$drawerWidth;
+		display:none;
+	}
+
+	&>.closer.visible {
+		width:100%;
+		display:block;
+		z-index:1;
+	}
+}
+
+
+
+#wrapper2 {
+	@include full-span();
+	position:absolute;
+	
+	&>.root {
+		height:100%;
+		width:$drawerWidth;
+		position:absolute;
+		right:0;
+		transition: 0.5s;
+		z-index:2;
+
+		&>.main {
+			display:flex;
+			flex-direction: column;
+			height: 100%;
+			justify-content: center;
+			transition: 0.5s;
+			position: absolute;
+			z-index:2;
+			right:-$drawerWidth;
+		}
+
+		&>.main.visible {
+			right:0;
+		}
+
+		&>.main>div {
+			padding:3px 16px;
+			height:30px;
+			width:120px;
+			margin:0 -90px 0 0;
+			transition: 0.5s;
+			font-size:1em;
+			height:30px;
+			line-height:30px;
+			color:#4385ef;
+			
+			&:first-child {	
+				border-top-left-radius: 6px;
+			}
+			
+			&:last-child {	
+				border-bottom-left-radius: 6px;
+			}
+		}
+		&>.main>div.hovered {
+			margin:0 -80px 0 -20px;
+			font-size:2em;
+			height:60px;
+			line-height:60px;
+			border-radius: 6px;
+			background: #4385ef;
+			color:white;
+		}
+	}
+
+	&>.closer {
+		top:0;
+		height:100%;
+		position:absolute;
+		width:0;
+		right:$drawerWidth;
+		display:none;
+	}
+
+	&>.closer.visible {
+		width:100%;
+		display:block;
+		z-index:1;
+	}
+}
+
+#wrapper3 {
+	@include full-span();
+	position:absolute;
+	
+	&>.root {
+		width:100%;
+		height:$drawerWidth;
+		position:absolute;
+		transition: 0.5s;
+		z-index:2;
+
+		&>.main {
+			display:flex;
+			flex-direction: row;
+			width: 100%;
+			justify-content: center;
+			transition: 0.5s;
+			position: absolute;
+			z-index:2;
+			top:-$drawerWidth;
+			vertical-align: bottom;
+		}
+
+		&>.main.visible {
+			top:0;
+		}
+
+		&>.main>div {
+			padding:10px;
+			height:140px;
+			width:30px;
+			margin:-110px 0 0 0;
+			transition: 0.5s;
+			text-align: center;
+    		line-height: 250px;
+			font-size:1em;
+			color:#d88e2d;
+			
+			&:first-child {	
+				border-bottom-left-radius: 6px;
+			}
+			
+			&:last-child {	
+				border-bottom-right-radius: 6px;
+			}
+		}
+		&>.main>div.hovered {
+			margin:-80px 0 0 0;
+			font-size:2em;
+			width:50px;
+			border-radius: 6px;
+			background: #d88e2d;
+			color:white;
+		}
+	}
+
+	&>.closer {
+		height:100%;
+		position:absolute;
+		width:0;
+		top:$drawerWidth;
+		display:none;
+	}
+
+	&>.closer.visible {
+		width:100%;
+		display:block;
+		z-index:1;
+	}
+}
+
+
+#wrapper4 {
+	@include full-span();
+	position:absolute;
+	
+	&>.root {
+		width:100%;
+		height:$drawerWidth;
+		position:absolute;
+		bottom:0;
+		transition: 0.5s;
+		z-index:2;
+
+		&>.main {
+			display:flex;
+			flex-direction: row;
+			width: 100%;
+			justify-content: center;
+			transition: 0.5s;
+			position: absolute;
+			z-index:2;
+			bottom:-$drawerWidth;
+		}
+
+		&>.main.visible {
+			bottom:0;
+		}
+
+		&>.main>div {
+			padding:10px;
+			height:120px;
+			width:30px;
+			margin:0 0 -90px 0;
+			transition: 0.5s;
+			text-align: center;
+			font-size:1em;
+			color:#d82da4;
+			
+			&:first-child {	
+				border-top-left-radius: 6px;
+			}
+			
+			&:last-child {	
+				border-top-right-radius: 6px;
+			}
+		}
+		&>.main>div.hovered {
+			width:50px;
+			margin:-20px 0 -80px 0;
+			font-size:2em;
+			border-radius: 6px;
+			background: #d82da4;
+			color:white;
+		}
+	}
+
+	&>.closer {
+		height:100%;
+		position:absolute;
+		width:0;
+		bottom:$drawerWidth;
+		display:none;
+	}
+
+	&>.closer.visible {
+		width:100%;
+		display:block;
+		z-index:1;
+	}
+}
+
+
+@media (max-width: 600px) {
+  #wrapper1 {
+	&>.root>.main {
+		left:0;
+	}
+  }
+  #wrapper2 {
+	&>.root>.main {
+		right:0;
+	}
+  }
+  #wrapper3 {
+	&>.root>.main {
+		top:0;
+	}
+  }
+  #wrapper4 {
+	&>.root>.main {
+		bottom:0;
+	}
+  }
+}
