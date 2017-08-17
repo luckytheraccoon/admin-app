@@ -1,101 +1,92 @@
 import $ from 'jquery';
-require('../../src/css/main.scss');
+import menuItems from './menuItems';
+import '../css/main.scss';
 
-let iconsArray = [
-    "fa fa-address-card-o",
-    "fa fa-calendar",
-    "fa fa-cloud",
-    "fa fa-comments-o",
-    "fa fa-cog",
-    "fa fa-exchange",
-    "fa fa-question-circle",
-    "fa fa-search",
-    "fa fa-tasks",
-    "fa fa-sign-out",
-];
+const menuItemsArr = menuItems();
+const menuItemsAmt = menuItemsArr.length;
 
+const wrapper = document.createElement("div");
+wrapper.id = "wrapper";
 
-const elementsAmt=10;
+const root = document.createElement("div");
+root.className = "root";
 
-for(let x=1;x<=1;x++) {
-    let wrapper = document.createElement("div");
-    wrapper.id = "wrapper"+x;
+const main = document.createElement("div");
+main.className = "main";
 
-    let root = document.createElement("div");
-    root.className = "root";
+const closer = document.createElement("div");
+closer.className = "closer";
 
-    let main = document.createElement("div");
-    main.className = "main";
+for (var i = 0; i < menuItemsAmt; i++) {
+    const item = document.createElement("div");
+    item.className = "item";
+    const itemIcon = document.createElement("div");
+    itemIcon.className = "icon " + menuItemsArr[i].icon;
+    const itemContent = document.createElement("div");
 
-    let closer = document.createElement("div");
-    closer.className = "closer";
+    const contentUl = document.createElement("ul");
 
-    for(let i=0;i<elementsAmt;i++) {
-        let item = document.createElement("div");
-        item.className = "item";
-        let itemIcon = document.createElement("div");
-        itemIcon.className = "icon " + iconsArray[i];
-        let itemContent = document.createElement("div");
-
-        let contentUl = document.createElement("ul");
-        let contentLi1 = document.createElement("li");
-        contentLi1.append(document.createTextNode(iconsArray[i]+"FAQ"));
-        let contentLi2 = document.createElement("li");
-        contentLi2.append(document.createTextNode(iconsArray[i]+"For ums"));
-        let contentLi3 = document.createElement("li");
-        contentLi3.append(document.createTextNode(iconsArray[i]+"Help & S"));
-        let contentLi4 = document.createElement("li");
-        contentLi4.append(document.createTextNode(iconsArray[i]+"Contact Us"));
-        let contentLi5 = document.createElement("li");
-        contentLi5.append(document.createTextNode(iconsArray[i]+"Contact Us"));
-
-        contentUl.append(contentLi1);
-        contentUl.append(contentLi2);
-        contentUl.append(contentLi3);
-        contentUl.append(contentLi4);
-        contentUl.append(contentLi5);
-
-        itemContent.append(contentUl);
-
-        itemContent.className = "content";
-        item.append(itemIcon);
-        item.append(itemContent);
-        main.append(item);
+    for (var x = 0; x < menuItemsArr[i].listItems.length; x++) {
+        const contentLi = document.createElement("li");
+        const contentA = document.createElement("a");
+        contentA.append(document.createTextNode(menuItemsArr[i].listItems[x].label));
+        contentA.href = menuItemsArr[i].listItems[x].url;
+        contentLi.append(contentA);
+        contentUl.append(contentLi);
     }
 
-    root.append(main);
-    wrapper.append(root);
-    root.after(closer);
+    itemContent.append(contentUl);
 
-    document.body.append(wrapper);
+    itemContent.className = "content";
+    item.append(itemIcon);
+    item.append(itemContent);
+    main.append(item);
 }
 
-$( document ).ready(function() {
+root.append(main);
+wrapper.append(root);
+root.after(closer);
 
-    $(".main").css({"min-height": (45*elementsAmt)+"px"});
+document.body.append(wrapper);
 
-    $(".root").mouseenter(function() {
-        $(this).next(".closer").addClass("visible");
-        $(this).find(".main").addClass("visible");
+
+$(document).ready(function () {
+
+    $(".main").css({
+        "min-height": (45 * menuItemsAmt) + "px"
     });
-    $(".closer").mouseenter(function() {
-        $(this).removeClass("visible");
-        $(this).prev().find(".main").removeClass("visible");
+
+    $(".root").mouseenter(function () {
+        $(this)
+            .next(".closer")
+            .addClass("visible");
+        $(this)
+            .find(".main")
+            .addClass("visible");
     });
-    $(".item").click(function() {
-        $(this).removeClass("hovered");
-        $(this).addClass("activated");
-        $(this).css({
-            width: $(this).find(".content").outerWidth() + "px",
-            height: $(this).find(".content").outerHeight() + "px"
-        });
+
+    $(".closer").mouseenter(function () {
+        $(this)
+            .removeClass("visible")
+            .prev()
+            .find(".main")
+            .removeClass("visible");
     });
-    $(".item").mouseenter(function() {
-        $(this).addClass("hovered");
-    });
-    $(".item").mouseleave(function() {
-        $(this).removeClass("hovered");
-        $(this).removeClass("activated");
-        $(this).removeAttr("style");
+
+    $(".item").click(function () {
+        $(this)
+            .removeClass("hovered")
+            .addClass("activated")
+            .css({
+                width: $(this).find(".content").outerWidth() + "px",
+                height: $(this).find(".content").outerHeight() + "px"
+            });
+    }).mouseenter(function () {
+        $(this)
+            .addClass("hovered");
+    }).mouseleave(function () {
+        $(this)
+            .removeClass("hovered activated")
+            .removeAttr("style");
     });
 });
