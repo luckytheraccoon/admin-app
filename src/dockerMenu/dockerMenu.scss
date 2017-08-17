@@ -1,0 +1,147 @@
+@import '../css/mixins';
+
+$drawerWidth: 50px;
+
+#dockerMenu_wrapper {
+	@include full-span();
+
+	position:absolute;
+	
+	&>.dockerMenu_root {
+		height:100%;
+		width:$drawerWidth;
+		position:absolute;
+		left:0;
+		transition: 0.5s;
+		z-index:2;
+
+		&>.dockerMenu_main {
+			display:flex;
+			flex-direction: column;
+			height: 100%;
+			justify-content: center;
+			transition: 0.5s;
+			position: absolute;
+			left:-$drawerWidth;
+		}
+
+		&>.dockerMenu_main.visible {
+			left:0;
+		}
+
+		&>.dockerMenu_main>.dockerMenu_item {
+			padding:0 5px 0 16px;
+			margin:0 0 0 -90px;
+			width:120px;
+			height:30px;
+			transition: 0.5s;
+			text-align: right;
+			font-size:1em;
+			color:#78b532;
+			position:relative;
+			overflow: hidden;
+			cursor:pointer;
+
+			& .dockerMenu_icon {
+				float:left;
+				width: 30px;
+				margin-left:80px;
+				display: block;
+				line-height:30px;
+				text-align: center;
+				transition: margin 0.5s, line-height 0.5s, font-size 0.5s, transform 0.5s;
+			}
+			& .dockerMenu_content {
+				right:100px;
+				opacity:0;
+				transition: width 0.5s, height 0.5s, opacity 1.1s ease-out, right 0.1s ease-in;
+				position: absolute;
+				text-align: left;
+
+				& a {
+					text-decoration: none;
+					color:white;
+
+					&:hover {
+						color:#ccc;
+					}
+				}
+
+				&>ul {
+					list-style-type: none;
+					padding:0;
+					margin:10px 20px 10px 130px;
+				
+					&>li {
+						font-family: arial;
+						font-size:.8em;
+						white-space: nowrap;
+						line-height:20px;
+					}
+				}
+
+			}
+			
+			&:first-child {	
+				border-top-right-radius: 6px;
+			}
+			
+			&:last-child {	
+				border-bottom-right-radius: 6px;
+			}
+
+			&.hovered,
+			&.activated {
+				border-radius: 6px;
+				color:white;
+
+				&.dockerMenu_icon {
+					line-height:40px;
+				}
+
+			}
+
+			&.hovered,
+			&.activated {
+				&>.dockerMenu_icon {
+					line-height:50px;
+					font-size:2em;
+				}
+			}
+
+			&.hovered {
+				background: #78b532;
+				margin:0 0 0 -70px;
+				height:50px;
+			}
+
+			&.activated {
+				background: #507D1E;
+				&>.dockerMenu_icon {
+					transform: scale(1);
+					margin-left:90px;
+				}
+
+				&>.dockerMenu_content {
+					right:0px;
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	&>.dockerMenu_closer {
+		top:0;
+		height:100%;
+		position:fixed;
+		width:0;
+		left:$drawerWidth;
+		display:none;
+	}
+
+	&>.dockerMenu_closer.visible {
+		width:100%;
+		display:block;
+		z-index:1;
+	}
+}

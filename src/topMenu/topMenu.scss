@@ -1,0 +1,106 @@
+@import '../css/mixins';
+
+#topMenu_wrapper {
+	@include full-span();
+
+	position:absolute;
+	
+	&>.topMenu_root {
+		height: 50px;
+		background:black;
+		width: 100%;
+		transition: 0.5s;
+
+		&>.topMenu_main {
+			display:flex;
+			flex-direction: row;
+			width: 100%;
+			justify-content: center;
+			transition: 0.5s;
+		}
+
+		&>.topMenu_main>.topMenu_item {
+			transition: 0.5s;
+			text-align: right;
+			font-size:1.5em;
+			color:#fff;
+			position:relative;
+			overflow: hidden;
+			cursor:pointer;
+
+			& .topMenu_icon {
+				padding:0 10px;
+				float:left;
+				display: block;
+				line-height:50px;
+				text-align: center;
+				transition: 0.5s;
+			}
+
+			& .topMenu_content {
+				left:100px;
+				opacity:0;
+				transition: 0.5s;
+				position: absolute;
+				text-align: left;
+
+				& a {
+					text-decoration: none;
+					color:white;
+
+					&:hover {
+						color:#ccc;
+					}
+				}
+
+				&>ul {
+					list-style-type: none;
+					padding:0;
+				
+					&>li {
+						font-family: arial;
+						font-size:.6em;
+						white-space: nowrap;
+						line-height:20px;
+					}
+				}
+
+			}
+
+			&.activated {
+				border-bottom-right-radius: 6px;
+				border-bottom-left-radius: 6px;
+				color:white;
+
+				&.topMenu_icon {
+					line-height:40px;
+				}
+
+			}
+
+			&.activated {
+				&>.topMenu_icon {
+					line-height:50px;
+					font-size:1em;
+				}
+			}
+
+			&.activated {
+				background: #507D1E;
+				&>.topMenu_icon {
+					transform: scale(1);
+					margin-left:90px;
+				}
+
+				&>.topMenu_content {
+					left:10px;
+					opacity: 1;
+				}
+			}
+			
+			&.hovered {
+				background: #78b532;
+			}
+		}
+	}
+}
