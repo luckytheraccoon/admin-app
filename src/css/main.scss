@@ -8,7 +8,7 @@ html, body {
 	padding:0;
 	@include full-span();
 	position: relative;
-	overflow:hidden;
+	overflow-x:hidden;
 }
 
 $drawerWidth: 50px;
@@ -41,7 +41,7 @@ $drawerWidth: 50px;
 		}
 
 		&>.main>.item {
-			padding:3px 16px;
+			padding:0 16px;
 			margin:0 0 0 -90px;
 			width:120px;
 			height:30px;
@@ -56,7 +56,6 @@ $drawerWidth: 50px;
 			& .icon {
 				float:left;
 				width: 30px;
-				height: 30px;
 				margin-left:80px;
 				display: block;
 				line-height:30px;
@@ -64,7 +63,6 @@ $drawerWidth: 50px;
 				transition: margin 0.5s, line-height 0.5s, font-size 0.5s, transform 0.5s;
 			}
 			& .content {
-				top:15px;
 				right:0px;
 				opacity:0;
 				transition: width 0.5s, height 0.5s, opacity 0.5s ease-out, right 0.5s;
@@ -74,7 +72,7 @@ $drawerWidth: 50px;
 				&>ul {
 					list-style-type: none;
 					padding:0;
-					margin:0 20px 25px 120px;
+					margin:10px 20px 10px 120px;
 				
 					&>li {
 						font-family: arial;
@@ -100,7 +98,7 @@ $drawerWidth: 50px;
 				color:white;
 
 				&.icon {
-					line-height:55px;
+					line-height:50px;
 				}
 
 			}
@@ -108,14 +106,14 @@ $drawerWidth: 50px;
 			&.hovered,
 			&.activated {
 				&>.icon {
-					line-height:55px;
+					line-height:50px;
 					font-size:2em;
 				}
 			}
 
 			&.hovered {
 				margin:0 0 0 -70px;
-				height:60px;
+				height:50px;
 			}
 
 			&.activated {
@@ -125,7 +123,6 @@ $drawerWidth: 50px;
 				}
 
 				&>.content {
-					top:15px;
 					right:0px;
 					opacity: 1;
 				}
@@ -155,13 +152,14 @@ $drawerWidth: 50px;
 	&>.closer {
 		top:0;
 		height:100%;
-		position:absolute;
+		position:fixed;
 		width:0;
 		left:$drawerWidth;
 		display:none;
 	}
 
 	&>.closer.visible {
+		background:red;
 		width:100%;
 		display:block;
 		z-index:1;

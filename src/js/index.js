@@ -1,12 +1,4 @@
-
-
-
-
-
-
-
-
-/*import $ from 'jquery';
+import $ from 'jquery';
 require('../../src/css/main.scss');
 
 let iconsArray = [
@@ -51,11 +43,14 @@ for(let x=1;x<=1;x++) {
         contentLi3.append(document.createTextNode(iconsArray[i]+"Help & S"));
         let contentLi4 = document.createElement("li");
         contentLi4.append(document.createTextNode(iconsArray[i]+"Contact Us"));
+        let contentLi5 = document.createElement("li");
+        contentLi5.append(document.createTextNode(iconsArray[i]+"Contact Us"));
 
         contentUl.append(contentLi1);
         contentUl.append(contentLi2);
         contentUl.append(contentLi3);
         contentUl.append(contentLi4);
+        contentUl.append(contentLi5);
 
         itemContent.append(contentUl);
 
@@ -73,13 +68,16 @@ for(let x=1;x<=1;x++) {
 }
 
 $( document ).ready(function() {
+
+    $(".main").css({"min-height":45*10+"px"});
+
     $(".root").mouseenter(function() {
-        $(this).find(".closer").addClass("visible");
+        $(this).next(".closer").addClass("visible");
         $(this).find(".main").addClass("visible");
     });
     $(".closer").mouseenter(function() {
         $(this).removeClass("visible");
-        $(this).before().find(".main").removeClass("visible");
+        $(this).prev().find(".main").removeClass("visible");
     });
     $(".item").click(function() {
         $(this).removeClass("hovered");
@@ -97,4 +95,4 @@ $( document ).ready(function() {
         $(this).removeClass("activated");
         $(this).removeAttr("style");
     });
-});*/
+});
