@@ -14,6 +14,9 @@ let iconsArray = [
     "fa fa-sign-out",
 ];
 
+
+const elementsAmt=10;
+
 for(let x=1;x<=1;x++) {
     let wrapper = document.createElement("div");
     wrapper.id = "wrapper"+x;
@@ -27,7 +30,7 @@ for(let x=1;x<=1;x++) {
     let closer = document.createElement("div");
     closer.className = "closer";
 
-    for(let i=0;i<10;i++) {
+    for(let i=0;i<elementsAmt;i++) {
         let item = document.createElement("div");
         item.className = "item";
         let itemIcon = document.createElement("div");
@@ -69,7 +72,7 @@ for(let x=1;x<=1;x++) {
 
 $( document ).ready(function() {
 
-    $(".main").css({"min-height":45*10+"px"});
+    $(".main").css({"min-height": (45*elementsAmt)+"px"});
 
     $(".root").mouseenter(function() {
         $(this).next(".closer").addClass("visible");

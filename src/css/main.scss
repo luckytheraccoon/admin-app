@@ -41,7 +41,7 @@ $drawerWidth: 50px;
 		}
 
 		&>.main>.item {
-			padding:0 16px;
+			padding:0 5px 0 16px;
 			margin:0 0 0 -90px;
 			width:120px;
 			height:30px;
@@ -72,7 +72,7 @@ $drawerWidth: 50px;
 				&>ul {
 					list-style-type: none;
 					padding:0;
-					margin:10px 20px 10px 120px;
+					margin:10px 20px 10px 130px;
 				
 					&>li {
 						font-family: arial;
@@ -98,7 +98,7 @@ $drawerWidth: 50px;
 				color:white;
 
 				&.icon {
-					line-height:50px;
+					line-height:40px;
 				}
 
 			}
@@ -159,7 +159,6 @@ $drawerWidth: 50px;
 	}
 
 	&>.closer.visible {
-		background:red;
 		width:100%;
 		display:block;
 		z-index:1;
